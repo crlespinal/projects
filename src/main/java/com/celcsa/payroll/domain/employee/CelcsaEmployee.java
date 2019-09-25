@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.celcsa.payroll.domain.base.BaseEntity;
 import com.celcsa.payroll.domain.employee.projects.WorkingProject;
-import com.celcsa.payroll.domain.employee.projects.WorkingProjectList;
-import com.celcsa.payroll.domain.employee.projects.WorkingProjectStatus;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -43,11 +41,11 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
         if(middleName!=null)
             this.middleName = middleName.getMiddleName();
 
-            WorkingProject p = new WorkingProject("Construction Dadeland", 90, 120, WorkingProjectStatus.CREATED);
+            /*WorkingProject p = new WorkingProject("Construction Dadeland", 90, 120, WorkingProjectStatus.CREATED);
             WorkingProject p2 = new WorkingProject("Construction Dadeland South", 90, 120, WorkingProjectStatus.CREATED);
 
             workingProjects.add(p);
-            workingProjects.add(p2);
+            workingProjects.add(p2);*/
     }
 
     public CelcsaEmployee(String id, WorkingProject workingProject){
