@@ -73,7 +73,7 @@ public class EmployeeController {
             BindingResult bindingResults) {
         if (!workingProjectDTO.isValid())
             throw new IllegalArgumentException("Working Project DTO invalid");
-        return celcsaEmployeeService.addWorkingProjectToEmployee(workingProjectDTO.getId(),
+        return celcsaEmployeeService.addWorkingProjectToEmployee(workingProjectDTO.getEmployeeId(),
                 workingProjectDTOToWP.convert(workingProjectDTO)).map(celcsaEmployeeToDTO::convert);
     }
 

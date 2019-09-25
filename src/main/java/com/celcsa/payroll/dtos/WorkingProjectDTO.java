@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WorkingProjectDTO {
 
+     private String employeeId;
      private String projectName;
      private int projectDuration;
      private int estimatedDuration;
