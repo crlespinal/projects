@@ -19,14 +19,13 @@ import lombok.NoArgsConstructor;
 public class WorkingProjectDTO {
 
      private String projectName;
-     private String id;
      private int projectDuration;
      private int estimatedDuration;
      private WorkingProjectStatus workingProjectStatus;
 
      public boolean isValid(){
           return !StringUtils.isEmpty(this.projectName) &&
-          !StringUtils.isEmpty(this.id) &&
+          projectDuration > 0 &&
           workingProjectStatus !=null;
      }
 

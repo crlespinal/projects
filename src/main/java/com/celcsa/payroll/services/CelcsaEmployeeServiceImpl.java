@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -45,10 +46,15 @@ public class CelcsaEmployeeServiceImpl implements ICelcsaEmployeeService {
         });
     }
 
-	@Override
-	public Mono<CelcsaEmployee> findById(String id) {
-		return repo.findById(id);
-	}
+    @Override
+    public Mono<CelcsaEmployee> findById(String id) {
+        return repo.findById(id);
+    }
+
+    @Override
+    public Flux<WorkingProject> getEmployeeProjects(String id) {
+       return  repo.findById(id).flatMapMany(item -> Flux.fromIterable(item.getWorkingProjects()));
+    }
 
     
 }

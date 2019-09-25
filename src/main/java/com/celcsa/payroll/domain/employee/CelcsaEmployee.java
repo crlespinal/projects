@@ -44,8 +44,10 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
             this.middleName = middleName.getMiddleName();
 
             WorkingProject p = new WorkingProject("Construction Dadeland", 90, 120, WorkingProjectStatus.CREATED);
+            WorkingProject p2 = new WorkingProject("Construction Dadeland South", 90, 120, WorkingProjectStatus.CREATED);
 
             workingProjects.add(p);
+            workingProjects.add(p2);
     }
 
     public CelcsaEmployee(String id, WorkingProject workingProject){
