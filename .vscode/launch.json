@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Shift",
+            "request": "launch",
+            "mainClass": "com.celcsa.payroll.domain.schedule.Shift",
+            "projectName": "payroll"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-DemoApplication<payroll>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

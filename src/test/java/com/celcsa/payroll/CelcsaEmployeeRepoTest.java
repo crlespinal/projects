@@ -1,6 +1,6 @@
 package com.celcsa.payroll;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.celcsa.payroll.domain.employee.CelcsaEmployee;
 import com.celcsa.payroll.domain.employee.FirstName;
@@ -10,9 +10,9 @@ import com.celcsa.payroll.domain.employee.Username;
 import com.celcsa.payroll.repositories.CelcsaEmployeeRepo;
 import com.celcsa.payroll.services.CelcsaEmployeeServiceImpl;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -27,7 +27,7 @@ import reactor.core.publisher.Mono;
 /**
  * CelcsaEmployeeRepoTest
  */
-@ExtendWith(SpringExtension.class)
+/*@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { CelcsaEmployeeRepoTest.class })
 @SpringBootTest
 public class CelcsaEmployeeRepoTest {
@@ -56,6 +56,6 @@ public class CelcsaEmployeeRepoTest {
 
         assertTrue(service.findByUsernameLike("carlose")!=null);*/
 
-    }
+  //  }
     
-}
+//}

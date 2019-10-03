@@ -5,6 +5,7 @@ import com.celcsa.payroll.dtos.WorkingProjectDTO;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import lombok.Synchronized;
 
@@ -18,10 +19,12 @@ public class WorkingProjectToDTO implements Converter<WorkingProject, WorkingPro
     @Override
     public WorkingProjectDTO convert(WorkingProject source) {
         return WorkingProjectDTO.builder()
-        .projectName(source.getProjectName())
+        .projectName(StringUtils.capitalize(source.getProjectName()))
         .projectDuration(source.getProjectDuration())
         .estimatedDuration(source.getEstimatedProjectDuration())
-        .workingProjectStatus(source.getWorkingProjectStatus()).build();
+        .workingProjectStatus(source.getWorkingProjectStatus())
+        .shifts(source.getShifts())
+        .build();
     }
 
     

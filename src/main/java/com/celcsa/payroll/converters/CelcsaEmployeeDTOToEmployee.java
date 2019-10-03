@@ -9,6 +9,7 @@ import com.celcsa.payroll.dtos.CelcsaEmployeeDTO;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import lombok.Synchronized;
 
@@ -22,8 +23,8 @@ public class CelcsaEmployeeDTOToEmployee implements Converter<CelcsaEmployeeDTO,
     @Override
     public CelcsaEmployee convert(CelcsaEmployeeDTO source) {
 
-        CelcsaEmployee e = new CelcsaEmployee(new Username(source.getUsername()), new FirstName(source.getFirstName()),
-                new LastName(source.getLastName()), new MiddleName(source.getMiddleName()));
+        CelcsaEmployee e = new CelcsaEmployee(new Username(source.getUsername().toLowerCase()), new FirstName(StringUtils.capitalize(source.getFirstName())),
+                new LastName(StringUtils.capitalize(source.getLastName())), new MiddleName(StringUtils.capitalize(source.getMiddleName())));
         return e;
     }
 

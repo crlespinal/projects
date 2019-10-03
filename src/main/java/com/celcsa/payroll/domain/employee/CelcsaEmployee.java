@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.celcsa.payroll.domain.base.BaseEntity;
 import com.celcsa.payroll.domain.employee.projects.WorkingProject;
+import com.celcsa.payroll.exceptions.ExistingProjectException;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -40,12 +42,6 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
         this.lastName = lastName.getLastname();
         if(middleName!=null)
             this.middleName = middleName.getMiddleName();
-
-            /*WorkingProject p = new WorkingProject("Construction Dadeland", 90, 120, WorkingProjectStatus.CREATED);
-            WorkingProject p2 = new WorkingProject("Construction Dadeland South", 90, 120, WorkingProjectStatus.CREATED);
-
-            workingProjects.add(p);
-            workingProjects.add(p2);*/
     }
 
     public CelcsaEmployee(String id, WorkingProject workingProject){
@@ -54,7 +50,17 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
     }
 
     public void addWorkingProject(WorkingProject workingProject){
+        if(projectExist(workingProject))
+            throw new ExistingProjectException("Project: " + workingProject.getProjectName() + " already exist.");
         workingProjects.add(workingProject);
+    }
+
+    protected boolean projectExist(WorkingProject workingProject) {
+        List<WorkingProject> list = this.getWorkingProjects();
+        for(WorkingProject wp:list)
+            if(wp.compareTo(workingProject)==1)
+                return true;
+        return false;
     }
 
     @Override
