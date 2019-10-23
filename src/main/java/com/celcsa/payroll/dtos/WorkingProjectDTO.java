@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.celcsa.payroll.domain.employee.projects.WorkingProjectStatus;
 import com.celcsa.payroll.domain.schedule.Shift;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.util.StringUtils;
 
@@ -20,14 +21,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkingProjectDTO {
-
-     private String employeeId;
+     
      private String projectName;
      private int projectDuration;
      private int estimatedDuration;
      private WorkingProjectStatus workingProjectStatus;
-     private List<Shift> shifts;
 
+     @JsonIgnore
      public boolean isValid(){
           return !StringUtils.isEmpty(this.projectName) &&
           projectDuration > 0 &&

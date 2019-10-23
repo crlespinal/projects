@@ -19,10 +19,10 @@ public class ShiftToDTO implements Converter<Shift, ShiftDTO> {
     @Override
     public ShiftDTO convert(Shift source) {
         return ShiftDTO.builder()
-        //.employeeId(source.getUserId())
+        .employeeId(source.getEmployeeId())
         .from(source.getFrom())
         .to(source.getTo())
-        .projectName(StringUtils.capitalize(source.getProjectName()))
+        .projectId(StringUtils.capitalize(source.getProjectId()))
         .build();
     }
 

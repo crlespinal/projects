@@ -20,7 +20,9 @@ public class WorkingProjectDTOToWP implements Converter<WorkingProjectDTO, Worki
         return WorkingProject.builder()
         .projectName(source.getProjectName())
         .projectDuration(source.getProjectDuration())
-        .estimatedProjectDuration(source.getEstimatedDuration()).build();
+        .estimatedProjectDuration(source.getEstimatedDuration())
+        .workingProjectStatus(source.getWorkingProjectStatus())
+        .build();
     }
 
     

@@ -6,6 +6,7 @@ import com.celcsa.payroll.converters.CelcsaEmployeeToDTOFull;
 import com.celcsa.payroll.converters.WorkingProjectDTOToWP;
 import com.celcsa.payroll.converters.WorkingProjectToDTO;
 import com.celcsa.payroll.dtos.CelcsaEmployeeDTO;
+import com.celcsa.payroll.dtos.PostWorkingProject;
 import com.celcsa.payroll.dtos.WorkingProjectDTO;
 import com.celcsa.payroll.services.CelcsaEmployeeServiceImpl;
 
@@ -72,12 +73,13 @@ public class EmployeeController {
 
     @PostMapping("/employee/project")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<CelcsaEmployeeDTO> addWorkingProjectToEmployee(@ModelAttribute WorkingProjectDTO workingProjectDTO,
-            BindingResult bindingResults) {
-        if (!workingProjectDTO.isValid())
-            throw new IllegalArgumentException("Working Project DTO invalid");
-        return celcsaEmployeeService.addWorkingProjectToEmployee(workingProjectDTO.getEmployeeId(),
-                workingProjectDTOToWP.convert(workingProjectDTO)).map(celcsaEmployeeToDTO::convert);
+    public Mono<CelcsaEmployeeDTO> addWorkingProjectToEmployee(@ModelAttribute PostWorkingProject postWorkingProject, BindingResult bindingResults) {
+        try{
+        return celcsaEmployeeService.addWorkingProjectToEmployee(postWorkingProject.getUsername(), postWorkingProject.getProjectName()).map(celcsaEmployeeToDTO::convert);
+        }catch(Exception e){
+            e.printStackTrace();
+            return Mono.just(new CelcsaEmployeeDTO());
+        }
     }
 
     /*@GetMapping("/employee/{id}/projects")

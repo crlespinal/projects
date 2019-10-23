@@ -6,6 +6,7 @@ import java.util.List;
 import com.celcsa.payroll.domain.base.BaseEntity;
 import com.celcsa.payroll.domain.schedule.Shift;
 
+import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -35,7 +36,7 @@ public class WorkingProject extends BaseEntity implements IProject, Comparable<W
      */
     private static final long serialVersionUID = 1L;
 
-    @Indexed(unique = true)
+    @Indexed(name="project_name_index", direction = IndexDirection.DESCENDING ,unique = true)
     @TextIndexed
     private String projectName;
 

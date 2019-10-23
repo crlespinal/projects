@@ -14,6 +14,10 @@ public interface IShiftService {
 
     public Mono<Shift> saveShift(Shift shift);
 
-    public Flux<Shift> getShiftsBy(Date from, Date to, String projectName);
+    public Mono<Shift> saveShiftCheckConflicts(Shift shift);
+
+    public Flux<Shift> getShiftsBy(String employeeId, Date from, Date to, String projectName);
+
+    public Flux<Shift> getShiftsByEmployeeDatesAndProject(String employeeId, Date from, Date to, String projectId);
 
 }

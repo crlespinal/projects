@@ -2,6 +2,7 @@ package com.celcsa.payroll.dtos;
 
 import java.util.Date;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -31,10 +32,14 @@ public class ShiftDTO {
     private Date to;
 
     @NonNull
-    private String projectName;
+    private String projectId;
 
     public boolean isValid(){
-        return employeeId!=null && from!=null && to!=null && projectName!=null;
+        return employeeId!=null && from!=null && projectId!=null;
+    }
+
+    public boolean isValidFull(){
+        return employeeId!=null && from!=null && to!=null && projectId!=null;
     }
     
 }

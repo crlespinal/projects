@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - DateUtil",
+            "request": "launch",
+            "mainClass": "com.celcsa.payroll.util.DateUtil",
+            "projectName": "payroll"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Shift",
             "request": "launch",
             "mainClass": "com.celcsa.payroll.domain.schedule.Shift",

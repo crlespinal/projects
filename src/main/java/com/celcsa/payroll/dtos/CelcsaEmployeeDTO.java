@@ -30,7 +30,5 @@ public class CelcsaEmployeeDTO {
     @NotNull
     private String firstName;
     private String middleName;
-
-    private WorkingProjectList workingProjectList;
     
 }

@@ -1,7 +1,6 @@
 package com.celcsa.payroll.services;
 
 import com.celcsa.payroll.domain.employee.CelcsaEmployee;
-import com.celcsa.payroll.domain.employee.projects.WorkingProject;
 
 
 import reactor.core.publisher.Mono;
@@ -19,6 +18,6 @@ public interface ICelcsaEmployeeService {
 
     public Mono<CelcsaEmployee> updateEmployee(CelcsaEmployee employee); 
 
-    public Mono<CelcsaEmployee> addWorkingProjectToEmployee(String username, WorkingProject workingProject);
+    public Mono<CelcsaEmployee> addWorkingProjectToEmployee(String username, String projectName);
     
 }

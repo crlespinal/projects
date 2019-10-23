@@ -14,7 +14,7 @@
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="org.celcsa" level="DEBUG"
+    <logger name="com.celcsa" level="DEBUG"
         additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>

@@ -23,7 +23,6 @@ public class WorkingProjectToDTO implements Converter<WorkingProject, WorkingPro
         .projectDuration(source.getProjectDuration())
         .estimatedDuration(source.getEstimatedProjectDuration())
         .workingProjectStatus(source.getWorkingProjectStatus())
-        .shifts(source.getShifts())
         .build();
     }
 

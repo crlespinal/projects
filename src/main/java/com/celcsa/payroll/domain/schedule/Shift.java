@@ -3,7 +3,6 @@ package com.celcsa.payroll.domain.schedule;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +13,7 @@ import com.celcsa.payroll.domain.employee.projects.WorkingProject;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.util.StringUtils;
 
 import lombok.Builder;
 import lombok.Data;
@@ -35,27 +35,28 @@ public class Shift extends BaseEntity{
 
     public static final BigDecimal SIXTY = new BigDecimal(60);
 
-   
+    @Indexed
+    String employeeId;
     @Indexed
     private Date from;
     @Indexed
     private Date to;
-    private String projectName;
+    private String projectId;
 
     public Shift(Date from, Date to){
         this.from = from;
         this.to = to;
     }
 
-    public Shift(Date from, Date to, String projectName){
-       
+    public Shift(String employeeId, Date from, Date to, String projectId){
+        this.employeeId = employeeId;
         this.from = from;
         this.to = to;
-        this.projectName = projectName;
+        this.projectId = projectId;
     }
     
     public Duration getDuration(){
-        if(from==null || to ==null)return Duration.between(Instant.now(), Instant.now());
+        if(from==null || to ==null)return Duration.ZERO;
         return Duration.between(from.toInstant(), to.toInstant());
     }
 
@@ -67,6 +68,25 @@ public class Shift extends BaseEntity{
         final BigDecimal minutes = new BigDecimal(getDuration().toMinutes());
         minutes.setScale(1, RoundingMode.HALF_UP);
         return minutes.divide(SIXTY).doubleValue();
+    }
+
+    public boolean isValid(){
+        return !StringUtils.isEmpty(employeeId) &&
+        !StringUtils.isEmpty(projectId);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj==null)return false;
+        final boolean type = obj instanceof Shift;
+        if(!type)return false;
+        final Shift target = (Shift) obj;
+        if(this.getProjectId().equals(target.getProjectId()) 
+        && this.getFrom().compareTo(target.getFrom())==0 
+        && this.getTo().compareTo(target.getTo())==0 
+        && this.getEmployeeId().equals(target.getEmployeeId()))
+            return true;
+        return false;
     }
 
     public static void main(String[] args) {

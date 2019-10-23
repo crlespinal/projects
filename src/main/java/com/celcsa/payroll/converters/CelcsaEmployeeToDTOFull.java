@@ -1,7 +1,6 @@
 package com.celcsa.payroll.converters;
 
 import com.celcsa.payroll.domain.employee.CelcsaEmployee;
-import com.celcsa.payroll.domain.employee.projects.WorkingProjectList;
 import com.celcsa.payroll.dtos.CelcsaEmployeeDTO;
 
 import org.springframework.core.convert.converter.Converter;
@@ -24,7 +23,7 @@ public class CelcsaEmployeeToDTOFull implements Converter<CelcsaEmployee, Celcsa
         .lastName(source.getLastName())
         .middleName(source.getMiddleName())
         .username(source.getUsername())
-        .workingProjectList(new WorkingProjectList(source.getWorkingProjects())).build();
+        .build();
     }
 
     

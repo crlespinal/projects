@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.celcsa.payroll.domain.base.BaseEntity;
-import com.celcsa.payroll.domain.employee.projects.WorkingProject;
 import com.celcsa.payroll.exceptions.ExistingProjectException;
-
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -34,7 +31,7 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
     private String firstName;
     private String middleName;
 
-    private List<WorkingProject> workingProjects = new ArrayList<>();
+    private List<String> workingProjects = new ArrayList<>();
 
     public CelcsaEmployee(Username username,FirstName firstName,LastName lastName, MiddleName middleName){
         this.username = username.getUsername();
@@ -44,21 +41,20 @@ public class CelcsaEmployee extends BaseEntity implements IEmployee {
             this.middleName = middleName.getMiddleName();
     }
 
-    public CelcsaEmployee(String id, WorkingProject workingProject){
-        this.setId(id);
-        workingProjects.add(workingProject);
+    public CelcsaEmployee(String projectName){
+        workingProjects.add(projectName);
     }
 
-    public void addWorkingProject(WorkingProject workingProject){
-        if(projectExist(workingProject))
-            throw new ExistingProjectException("Project: " + workingProject.getProjectName() + " already exist.");
-        workingProjects.add(workingProject);
+    public void addWorkingProject(String projectName){
+        if(projectExist(projectName))
+            throw new ExistingProjectException("Project: " + projectName + " already exist.");
+        workingProjects.add(projectName);
     }
 
-    protected boolean projectExist(WorkingProject workingProject) {
-        List<WorkingProject> list = this.getWorkingProjects();
-        for(WorkingProject wp:list)
-            if(wp.compareTo(workingProject)==1)
+    protected boolean projectExist(String projectName) {
+        List<String> list = this.getWorkingProjects();
+        for(String wp:list)
+            if(wp.compareTo(projectName)==1)
                 return true;
         return false;
     }
